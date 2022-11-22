@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+  <title>Login | Forum</title>
+{% endblock %}
+
+{% block content %}
+  <form method="post" action="">
+    {% csrf_token %}
+    <label>
+      Username
+      <input type="text" name="username"/>
+    </label>
+    <label>
+      Password
+      <input type="password" name="password"/>
+    </label>
+
+    <input type="submit" value="login">
+  </form>
+{% endblock %}
