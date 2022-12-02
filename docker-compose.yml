@@ -1,0 +1,40 @@
+version: "3.9"  # optional since v1.27.0
+
+services:
+  db:
+    container_name: forum-saas-kowan-db
+    image: postgres:latest
+    volumes:
+      - ./data/db:/var/lib/postgresql/data # name of volume:name of location storage
+    restart: always
+    #  ini boleh di-uncomment kalo mau check via psql
+    #  jangan lupa comment lagi, otherwise cssnya ngebreak
+    ports:
+     - "5432:5432"
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_DB: ${USER}
+      POSTGRES_PASSWORD: ${USER}
+  web:
+    container_name: forum-saas-kowan-web
+    build:
+      # NOTE: Change if you want to change stage, don't forget to build it first
+      target: prod
+      # target: dev
+      context: .
+      dockerfile: Dockerfile
+    # NOTE: Uncomment the commands below if want to develop
+    # entrypoint: ./script/entrypoint_dev.sh
+    # command: python edom_backend/manage.py runserver 0.0.0.0:8000
+    # restart: always
+    # volumes:
+    #   - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_USER: ${USER}
+      POSTGRES_DB: ${USER}
+      POSTGRES_PASSWORD: ${USER}
+    depends_on:
+      - db
+
