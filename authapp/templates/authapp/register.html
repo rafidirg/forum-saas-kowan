@@ -1,13 +1,79 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-  <title>Register | Forum</title>
+<title>Login | Forum</title>
 {% endblock %}
 
 {% block content %}
-  <form method="post" action="">
-    {% csrf_token %}
-    {{ form.as_table }}
-    <input type="submit" value="submit">
-  </form>
+
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml" class="fourchan-x seaweedchan ua-blink js-enabled">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="//s.4cdn.org/css/yui.8.css">
+  <link rel="stylesheet" type="text/css" href="//s.4cdn.org/css/global_blue.3.css">
+  <link rel="shortcut icon" href="//s.4cdn.org/image/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="//s.4cdn.org/css/pass.10.css">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body class="vsc-initialized">
+  <div id="doc">
+    <div id="hd">
+      <div id="logo-fp">
+        <a href="/" title="Home"><img alt="4chan"
+            src="https://cdn.discordapp.com/attachments/1016588284463427654/1053672015841734656/image.png" width="300"
+            height="120" class="my-3"></a>
+      </div>
+    </div>
+    <div class="yui-g">
+      <div class="yui-u first">
+        <div class="box-outer left-box">
+          <div class="box-inner">
+            <div class="boxbar">
+              <h2>Register</h2>
+            </div>
+            <div class="boxcontent">
+              <form method="post" action="">
+                {% csrf_token %}
+                <div id="email_collection_form" style="display: table;">
+                  {% for field in form %}
+                  <div class="form-group{% if field.errors %} has-error{% endif %} py-2">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    <div class="text-danger">
+                      {% if field.errors %}
+                      <p>{{ field.errors }}</p>
+                      {% endif %}
+                    </div>
+
+                  </div>
+                  {% endfor %}
+                  
+                  <ul>
+                    <li>Username and password required.</li>
+                    <li>150 characters or fewer. Letters, digits and @/./+/-/_ only.
+                      password</li>
+                    <li>Your password can't be too similar to your other personal information.</li>
+                    <li>Your password must contain at least 8 characters.</li>
+                    <li>Your password can't be a commonly used password.</li>
+                    <li>Your password can't be entirely numeric.</li>
+                  </ul>
+                  <div style="text-align: center;">
+                    <input type="submit" class="btn btn-success" value="Register" id="pbac-button"></input>
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
 {% endblock %}

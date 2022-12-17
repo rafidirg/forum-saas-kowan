@@ -1,21 +1,68 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-  <title>Login | Forum</title>
+<title>Login | Forum</title>
 {% endblock %}
 
 {% block content %}
-  <form method="post" action="">
-    {% csrf_token %}
-    <label>
-      Username
-      <input type="text" name="username"/>
-    </label>
-    <label>
-      Password
-      <input type="password" name="password"/>
-    </label>
 
-    <input type="submit" value="login">
-  </form>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/xhtml" class="fourchan-x seaweedchan ua-blink js-enabled">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="//s.4cdn.org/css/yui.8.css">
+  <link rel="stylesheet" type="text/css" href="//s.4cdn.org/css/global_blue.3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/1016588284463427654/1053682865663115344/image.png">
+  <link rel="stylesheet" type="text/css" href="//s.4cdn.org/css/pass.10.css">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body class="vsc-initialized">
+  <div id="doc">
+    <div id="hd my-2">
+      <div id="logo-fp">
+        <a href="/" title="Home"><img alt="4chan" src="https://cdn.discordapp.com/attachments/1016588284463427654/1053682622196371456/image.png"
+            width="300" height="120"></a>
+      </div>
+    </div>
+    <div class="yui-g">
+      <div class="yui-u first">
+        <div class="box-outer left-box">
+          <div class="box-inner">
+            <div class="boxbar">
+              <h2>Login</h2>
+            </div>
+            <div class="boxcontent">
+              <form method="post" action="">
+                {% csrf_token %}
+                <div id="email_collection_form">
+                  <div class="form-row email-row">
+                    <div class="left-column">
+                      <h3>Username</h3>
+                      <input type="text" size="17" autocomplete="off" name="username" 
+                        title="E-mail address or password must be valid.">
+                    </div>
+                    <div class="right-column">
+                      <h3>Password</h3>
+                      <input type="password" size="17" autocomplete="off" name="password" 
+                        title="E-mail address or password must be valid.">
+                    </div>
+                  </div>
+                  <div style="text-align: center;">
+                    <input type="submit" class="btn btn-success" value="Login" id="pbac-button"></input>
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
 {% endblock %}
