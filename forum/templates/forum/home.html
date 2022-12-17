@@ -1,25 +1,46 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-  <title>Home Forum</title>
+<title>Home Forum</title>
 {% endblock %}
 
 {% block content %}
-  <div id="parent-container">
-    {% if posts.first == None %}
-      <h4>There is no post yet</h4>
-    {% else %}
-      <div id="posts">
+  <head>
+    <link rel="shortcut icon" href="https://s.4cdn.org/image/favicon.ico">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  </head>
+  <body class="is_index board_u vsc-initialized">
+    <span id="id_css"></span>
+    <div class="boardBanner">
+      <div class="boardTitle">Posts</div>
+    </div>
+      <div id="togglePostFormLink" class="desktop">[ <a href="{% url 'forum:create_post' %}">Start a New Thread</a>] </div>
+        <hr>
+        {% if posts.first == None %}
+        <center>
+          <h1><b>There is No Post Yet</b></h1>
+        </center>
+        {% else %}
         {% for post in posts %}
-          <div>
-            <a href="/forum/{{ post.slug }}">
-              <h3>{{ post.title }}</h3>
-              <h5>{{ post.author }}</h5>
-            </a>
+        <div class="thread" id="t3757285">
+          <div class="postContainer opContainer" id="pc3757285">
+            <div id="p3757285" class="post op">
+              <a href="/forum/{{ post.slug }}">
+                <div class="postInfo desktop" id="pi3757285">
+                  <h3 class="subject">{{ post.title }}</h3>
+                  <span class="nameBlock">
+                    <h6 class="author">By: <b>{{ post.author }}</b></h6>
+                  </span>
+                </div>
+              </a>
+              <blockquote class="postMessage" id="m3757285"> {{ post.content }} </blockquote>
+            </div>
           </div>
+        </div>
+        <hr>
         {% endfor %}
-      </div>
-    {% endif %}
-  </div>
-{% endblock %}
-
+      {% endif %}
+  </body>
+  <auto-scroll></auto-scroll>
+  {% endblock %}

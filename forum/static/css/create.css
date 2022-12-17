@@ -1,0 +1,13 @@
+body {
+    background: #ffe url(/image/fade.png) top center repeat-x;
+    color: maroon;
+    font-family: arial, helvetica, sans-serif;
+    font-size: 10pt;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+#postForm {
+    margin-left: 2%;
+    margin-top: 2%;
+}

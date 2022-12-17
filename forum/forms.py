@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
         exclude = ['author', 'slug', 'course']
 
     title = forms.CharField(
-        label='Judul',
+        label='Title',
         max_length=50,
         widget=forms.TextInput(
             attrs={

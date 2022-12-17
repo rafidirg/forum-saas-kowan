@@ -1,26 +1,48 @@
 {% extends 'base.html' %}
 
 {% block meta %}
+<title>{{post.title}}</title>
 {% endblock %}
 
 {% block content %}
-  <div>
-    <h2>{{ post.title }}</h2>
-    <h6>{{ post.author }}</h6>
-    {{ post.content | safe }}
-  </div>
-  <br/>
-  Comments:
-  <div>
-    {% for comment in comments %}
-      {{ comment.content | safe }}
-      <h6>{{ comment.author }}</h6>
-    {% endfor %}
-  </div>
-  Create new comment:
-  <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Add Comment</button>
-  </form>
-{% endblock %}
+  <head>
+    <link rel="shortcut icon" href="https://s.4cdn.org/image/favicon.ico">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+  </head>
+  <body class="is_thread board_u yotsuba_new nws vsc-initialized">
+    <br/>
+      <div class="postInfo desktop" id="pi3757285">
+        <h1 class="subject">{{ post.title }}</h1>
+        <span class="nameBlock">
+          <h3 class="author">By: <b>{{ post.author }}</b></h3>
+        </span>
+      </div>
+      <blockquote class="postMessage" id="m3757285"> {{ post.content }} </blockquote>
+          <div class="postContainer replyContainer" id="pc3145655">
+            {% for comment in comments %}
+            <div class="sideArrows">&gt;&gt;</div>
+            <div class="post reply">
+              <div class="postInfo desktop">
+                <span class="nameBlock capcodeMod">
+                  <h5 class="replyAuthor"><b>{{comment.author}}</b></h5>
+              </div>
+              <blockquote class="replyMessage">
+                {{comment.content}}
+              </blockquote>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <hr />
+
+    {% load crispy_forms_tags %}
+    <form method="post" id="replyForm">
+      {% csrf_token %}
+      <h6><b>Reply the Post:</b></h6>
+      {{ form|crispy }}
+      <br>
+      <button type="submit" class="btn btn-success" id="replyButton">Add Comment</button>
+    </form>
+  </body>
+  {% endblock %}

@@ -25,7 +25,7 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('landing:home')
+            return redirect('forum:home')
         else:
             messages.info(request, 'Username or password not match')
     return render(request, 'authapp/login.html', {})

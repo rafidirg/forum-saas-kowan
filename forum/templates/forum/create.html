@@ -5,11 +5,18 @@
 {% endblock %}
 
 {% block content %}
-  <div>
+<head>
+  <link rel="shortcut icon" href="https://s.4cdn.org/image/favicon.ico">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/create.css' %}">
+</head>
+
+{% load crispy_forms_tags %}
+  <div id="postForm">
     <form method="post">
       {% csrf_token %}
-      {{ form }}
-      <button type="submit">Post</button>
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-success" id="replyButton">Post</button>
     </form>
   </div>
 {% endblock %}
